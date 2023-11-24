@@ -10,6 +10,12 @@ const theme: ITheme = {
     bold: 'bold',
     regular: 'regular',
   },
+  fontSizes: {
+    s: '8px',
+    m: '14px',
+    l: '16px',
+    xl: '18px'
+  },
   spacing: {
     s: '8px',
     m: '16px',

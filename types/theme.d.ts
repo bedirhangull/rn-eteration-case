@@ -10,6 +10,12 @@ interface ITheme {
     bold: string;
     regular: string;
   };
+  fontSizes: {
+    s: string;
+    m: string;
+    l: string;
+    xl: string; 
+  },
   spacing: {
     s: string;
     m: string;
