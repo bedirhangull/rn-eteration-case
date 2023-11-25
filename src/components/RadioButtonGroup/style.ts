@@ -20,7 +20,7 @@ const RadioButton = styled.TouchableOpacity`
   margin-right: 8px;
 `;
 
-const RadioButtonText = styled.Text<{theme: ITheme}>`
+const RadioButtonText = styled.Text<{theme: ITheme}>` 
   font-size: ${props => props.theme.fontSizes.l};
 `;
 

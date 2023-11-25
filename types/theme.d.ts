@@ -2,6 +2,7 @@ interface ITheme {
   colors: {
     main: string;
     gray: string;
+    lightGray: string;
     black: string;
     white: string;
     favColor: string;
