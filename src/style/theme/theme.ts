@@ -2,6 +2,7 @@ const theme: ITheme = {
   colors: {
     main: '#2A59FE',
     gray: '#D9D9D9',
+    lightGray: '#ebebeb',
     black: '#000000',
     white: '#FFFFFF',
     favColor: '#FFB800',
