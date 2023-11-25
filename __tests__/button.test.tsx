@@ -2,7 +2,7 @@ import '@testing-library/jest-native/extend-expect';
 
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
-import Button from '../src/components/button/Button';
+import Button from '../src/components/Button/Button';
 import { ThemeProvider } from 'styled-components/native';
 import theme from '../src/style/theme/theme';
 
