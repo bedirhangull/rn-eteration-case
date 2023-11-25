@@ -3,11 +3,13 @@ import Checkbox from "./CheckBox";
 import RadioGroup from "./RadioButtonGroup"
 import SearchInput from "./SearchInput";
 import ProductCard from "./ProductCard";
+import ListCard from "./ListCard";
 
 export {
     Button,
     Checkbox,
     RadioGroup,
     SearchInput,
-    ProductCard
+    ProductCard,
+    ListCard
 }
