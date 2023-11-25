@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { Button, Checkbox, RadioGroup, SearchInput, ProductCard, ListCard } from '@components';
+import { Button, Checkbox, RadioGroup, SearchInput, ProductCard, ListCard, Header } from '@components';
 import { Text, View } from 'react-native'
+import { MagnifyingGlassIcon as MagnifyingGlassIcon } from "react-native-heroicons/solid";
 
 const Home = () => {
 
@@ -28,7 +29,14 @@ const Home = () => {
       <Button onPress={() => console.log('Bedirhan')} borderRadius buttonText='Selamlar miller naber' />
       <Checkbox onChange={() => setChecked(!checked)} label='Tamamlandi' checked={checked} />
       <RadioGroup items={radioItems} selectedValue={selectedValue} onChange={handleRadioChange} />
-      <ListCard count={12} price="12.000" productName='Samsung s20 falan' />
+      <Header headerFunction={() => console.log('test')} headerTitle='Samsung s20' icon={
+              <MagnifyingGlassIcon
+              height={24}
+              width={24}
+              color="gray"
+              testID="magnifying-glass-icon"
+            />
+      } />
     </View>
   );
 };
