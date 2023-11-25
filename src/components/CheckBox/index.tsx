@@ -12,8 +12,8 @@ const Checkbox = (props: ICheckBox) => {
     const { label, checked, onChange } = props;
 
     return (
-        <CheckBoxWrapper testID="checkbox-wrapper">
-            <CheckboxContainer checked={props.checked} onPress={onChange}>
+        <CheckBoxWrapper>
+            <CheckboxContainer testID="checkbox-wrapper" checked={props.checked} onPress={onChange}>
                 {checked && <CheckMark testID="check-mark" />}
             </CheckboxContainer>
             <LabelText>{label}</LabelText>
