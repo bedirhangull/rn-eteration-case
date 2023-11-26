@@ -5,6 +5,7 @@ import SearchInput from "./SearchInput";
 import ProductCard from "./ProductCard";
 import ListCard from "./ListCard";
 import Header from "./Header";
+import FilterModal from "./FilterModal";
 
 export {
     Button,
@@ -13,5 +14,6 @@ export {
     SearchInput,
     ProductCard,
     ListCard,
-    Header
+    Header,
+    FilterModal
 }
