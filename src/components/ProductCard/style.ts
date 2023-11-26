@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 
-const CardContainer = styled.View<{ theme: ITheme }>`
+const CardContainer = styled.TouchableOpacity<{ theme: ITheme }>`
   border-color: ${(props) => props.theme.colors.gray};
   border-width: 2px;
   width: 170px;

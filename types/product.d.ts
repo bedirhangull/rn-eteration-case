@@ -1,5 +1,6 @@
 interface ProductType {
     date?: string;
+    description: string;
     id: string;
     name: string;
     image: string;

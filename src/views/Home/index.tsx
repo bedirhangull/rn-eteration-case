@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FlatList, ActivityIndicator } from 'react-native';
 import { Container, FilterContainer, FilterText, Wrapper } from './style';
 import { Button, Header, SearchInput, ProductCard, FilterModal } from '@components';
-import { FilterLayout } from '../../layout/index';
+import { FilterLayout } from '@layout';
 import moment from 'moment';
 
 //state managment
@@ -13,8 +13,8 @@ import { addToCart } from '@store/cart/cartSlice';
 import { RootState } from '@store/store';
 import { addToFavorites, removeFromFavorites } from '@store/fav/favoriteSlice'
 
-const Home = () => {
-  
+const Home = ({navigation}: {navigation: any}) => {
+
   const dispatch = useDispatch<any>();
 
   const [page, setPage] = useState<number>(0);
@@ -54,9 +54,15 @@ const Home = () => {
       dispatch(addToFavorites(product));
     }
   };
+
+  const goToProductDetails = (product: ProductType) => {
+    const isFavorite = isInFavorites(product);
+    navigation.navigate('Details', { product, isFavorite });
+  };
   
   const renderItem = (product: ProductType) => (
     <ProductCard
+      goToDetail={(() => goToProductDetails(product))}
       addFav={() => handleFavorite(product)}
       onPress={() => dispatch(addToCart(product))}
       id={product.id}
@@ -114,7 +120,7 @@ const Home = () => {
         break;
       //new to old
       case 'newToOld':
-        filteredAndSortedProducts.sort((a, b) => +moment(b.date) - +moment(a.date));
+        filteredAndSortedProducts.sort((a, b) => +moment(b.date) + +moment(a.date));
         break;
       //price high to low
       case 'priceHighToLow':

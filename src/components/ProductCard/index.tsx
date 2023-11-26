@@ -7,21 +7,21 @@ import { StyleSheet } from "react-native";
 interface IProductCard {
     id: string
     productImage: string
-    addFav: () => void
+    addFav?: () => void
     fav?: boolean
     onPress: () => void
     price: number 
     productName: string
-
+    goToDetail: () => void
 }
 
 const ProductCard = (props: IProductCard) => {
 
-    const { productImage, fav, price, productName, onPress, addFav} = props;
+    const { productImage, fav, price, productName, onPress, addFav, goToDetail} = props;
     const { favIcon } = styles;
 
     return (
-        <CardContainer testID="card-container">
+        <CardContainer onPress={goToDetail} testID="card-container">
             <ImageContainer>
                 <FavWrapper testID="fav-wrapper" onPress={addFav}>
                     <StarIcon style={favIcon} color={fav ? 'orange' : 'white'} testID="star-icon" />

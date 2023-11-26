@@ -1,3 +1,3 @@
 import FilterLayout from "./FilterLayout";
 
-export {FilterLayout};
+export { FilterLayout };
