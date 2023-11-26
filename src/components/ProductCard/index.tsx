@@ -9,7 +9,7 @@ interface IProductCard {
     addFav: () => void
     fav?: boolean
     onPress: () => void
-    price: string
+    price: number 
     productName: string
 
 }
@@ -29,9 +29,9 @@ const ProductCard = (props: IProductCard) => {
             </ImageContainer>
             <ProductContainer>
                 <PriceText testID="price-text">{price} ₺</PriceText>
-                <ProductText testID="product-text">{productName}</ProductText>
+                <ProductText numberOfLines={1} ellipsizeMode="tail" testID="product-text">{productName}</ProductText>
                 <ButtonWrapper>
-                    <Button textFamily='regular' onPress={onPress} buttonText="Add to Cart" />
+                    <Button textColor="white" textFamily='regular' onPress={onPress} buttonText="Add to Cart" />
                 </ButtonWrapper>
             </ProductContainer>
         </CardContainer>

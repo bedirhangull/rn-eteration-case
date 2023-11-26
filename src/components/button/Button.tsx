@@ -8,16 +8,18 @@ interface IButton {
     onPress: () => void,
     buttonText: string
     textFamily?: 'bold' | 'regular',
-    buttonTextSize?: 's' | 'lg'
+    buttonTextSize?: 's' | 'lg',
+    textColor?: string
 }
 
 const Button = (props: IButton) => {
 
-    const { borderRadius = true, buttonColor = 'blue', onPress, buttonText, textFamily = 'bold', buttonTextSize = 's' } = props;
+    const { borderRadius = true, buttonColor = 'blue', onPress, buttonText, textFamily = 'bold', buttonTextSize = 's', textColor = 'blue' } = props;
 
     return (
         <ButtonWrapper testID='button-wrapper' onPress={onPress} $buttonColor={buttonColor} $borderRadius={borderRadius}>
             <ButtonText
+                $textColor={textColor}
                 $textType={textFamily}
                 $buttonTextSize={buttonTextSize}>
                 {buttonText}

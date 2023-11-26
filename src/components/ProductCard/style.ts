@@ -5,6 +5,7 @@ const CardContainer = styled.View<{ theme: ITheme }>`
   border-width: 2px;
   width: 170px;
   padding: 8px;
+  margin: 2px;
 `;
 
 const ProductImage = styled.Image`

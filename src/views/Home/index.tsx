@@ -1,43 +1,75 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import { Button, Checkbox, RadioGroup, SearchInput, ProductCard, ListCard, Header } from '@components';
-import { Text, View } from 'react-native'
-import { MagnifyingGlassIcon as MagnifyingGlassIcon } from "react-native-heroicons/solid";
+import React, { useEffect, useState } from 'react';
+import { FlatList, ActivityIndicator } from 'react-native';
+import { Container, FilterContainer, FilterText, Wrapper } from './style';
+import { Button, Header, SearchInput, ProductCard } from '@components';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchProducts } from '@store/products/productsSlice';
+import { addToCart } from '@store/cart/cartSlice';
+import { RootState } from '@store/store';
 
 const Home = () => {
 
-  const [checked, setChecked] = useState<boolean>(false);
-  const [favProduct, setFav] = useState<boolean>(false);
+  const dispatch = useDispatch<any>();
+  
+  const [search, setSearch] = useState<string>('');
+  const [page, setPage] = useState<number>(1);
+  const [displayProducts, setDisplayProducts] = useState<ProductType[]>([]);
+  const [showActivityIndicator, setShowActivityIndicator] = useState<boolean>(false);
 
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
-  const [selectedValue, setSelectedValue] = useState(null);
-  const [inputTest, setInput] = useState('');
+  const products: Array<ProductType> = useSelector((state: RootState) => state.products.productData);
 
-  const handleRadioChange = (value: any) => {
-    setSelectedValue(value);
+  useEffect(() => {
+    setDisplayProducts(products.slice(0, 12));
+  }, [products]);
+
+  const renderItem = (product: ProductType) => (
+    <ProductCard
+      addFav={() => console.log('fav added')}
+      onPress={() => dispatch(addToCart(product))}
+      price={product.price}
+      productImage={product.image}
+      productName={product.name}
+    />
+  );
+
+  const handleLoadMore = () => {
+    setShowActivityIndicator(true);
+    setPage(page + 1);
+    const nextDisplayProducts = products.slice(0, page * 12);
+    setDisplayProducts(nextDisplayProducts);
+    setShowActivityIndicator(false);
   };
 
-  const radioItems = [
-    { label: 'Option 1', value: 'option1' },
-    { label: 'Option 2', value: 'option2' },
-    { label: 'Option 3', value: 'option3' },
-  ];
+  const filteredProducts =
+    displayProducts.length > 0 &&
+    displayProducts.filter((product) =>
+      product.name.toLowerCase().includes(search.toLowerCase())
+    );
 
   return (
-    <View style={{ marginTop: 30 }}>
-      <Button onPress={() => console.log('Bedirhan')} borderRadius buttonText='Selamlar miller naber' />
-      <Checkbox onChange={() => setChecked(!checked)} label='Tamamlandi' checked={checked} />
-      <RadioGroup items={radioItems} selectedValue={selectedValue} onChange={handleRadioChange} />
-      <Header headerFunction={() => console.log('test')} headerTitle='Samsung s20' icon={
-              <MagnifyingGlassIcon
-              height={24}
-              width={24}
-              color="gray"
-              testID="magnifying-glass-icon"
-            />
-      } />
-    </View>
+    <Container>
+      <Header headerTitle='E-market' />
+      <Wrapper>
+        <SearchInput onChangeText={(text) => setSearch(text)} placeholder='Search' />
+        <FilterContainer>
+          <FilterText>Filters:</FilterText>
+          <Button onPress={() => console.log('filter')} buttonText='Select Filter' buttonColor='gray' borderRadius={false} textColor='black' />
+        </FilterContainer>
+        <FlatList
+          data={filteredProducts || []}
+          numColumns={2}
+          renderItem={({ item }) => renderItem(item)} 
+          keyExtractor={(item) => item.id.toString()}
+          onEndReached={handleLoadMore}
+          onEndReachedThreshold={0.1}
+          ListFooterComponent={() => showActivityIndicator && <ActivityIndicator size="large" color="black" />}
+        />
+      </Wrapper>
+    </Container>
   );
 };
 

@@ -4,7 +4,7 @@ import { PlusIcon as PlusIcon, MinusIcon as MinusIcon } from "react-native-heroi
 
 interface IListCard {
     productName: string
-    price: number
+    price: number 
     increment: () => void
     decrement: () => void
     count: number

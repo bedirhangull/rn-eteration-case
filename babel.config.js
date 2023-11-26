@@ -8,6 +8,7 @@ module.exports = {
           '@views': './src/views/index',
           '@components': './src/components/index',
           '@options': './src/utils/options.ts',
+          '@store': './src/store',
         },
       },
     ],
