@@ -5,6 +5,7 @@ import { Button } from "@components";
 import { StyleSheet } from "react-native";
 
 interface IProductCard {
+    id: string
     productImage: string
     addFav: () => void
     fav?: boolean
