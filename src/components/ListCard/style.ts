@@ -2,6 +2,7 @@ import styled from "styled-components/native";
 
 const ListCardContainer = styled.View`
   flex-direction: row;
+  margin-vertical: 8px;
 `;
 
 const InfoContainer = styled.View``;

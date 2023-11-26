@@ -2,17 +2,17 @@ import React from 'react';
 import { HeaderButton, HeaderContainer, HeaderTitle } from './style';
 
 interface IHeader {
-    icon: React.ReactNode;
+    icon?: React.ReactNode;
     headerTitle: string;
-    headerFunction: () => void;
+    headerFunction?: () => void;
 }
 
 const Header: React.FC<IHeader> = ({ icon, headerTitle, headerFunction }) => {
     return (
         <HeaderContainer testID="header-container">
-            <HeaderButton testID="header-button" onPress={headerFunction}>
+            {icon && <HeaderButton testID="header-button" onPress={headerFunction}>
                 {icon}
-            </HeaderButton>
+            </HeaderButton>}
             <HeaderTitle testID="header-title">{headerTitle}</HeaderTitle>
         </HeaderContainer>
     );

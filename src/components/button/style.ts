@@ -8,11 +8,12 @@ const ButtonWrapper = styled.TouchableOpacity<{$borderRadius: boolean; $buttonCo
     background-color: ${props => props.$buttonColor == 'blue' ? props.theme.colors.main : props.theme.colors.gray} 
 `
 
-const ButtonText = styled.Text<{$buttonTextSize: 's' | 'lg'; theme: ITheme; $textType: 'bold' | 'regular'}>`
+const ButtonText = styled.Text<{$buttonTextSize: 's' | 'lg'; theme: ITheme; $textType: 'bold' | 'regular', $textColor: string}>`
     font-size: ${props => props.$buttonTextSize == 's' ? props.theme.fontSizes.l : props.theme.fontSizes.xl};
     color: ${props => props.theme.colors.white};
     font-weight: ${props => props.$textType == 'bold' ? props.theme.fonts.bold : props.theme.fonts.regular};
     text-align: center;
+    color: ${props => props.$textColor}
 `
 
 export {ButtonWrapper, ButtonText};
