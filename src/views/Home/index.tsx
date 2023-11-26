@@ -1,13 +1,17 @@
+//ui
 import React, { useEffect, useState } from 'react';
 import { FlatList, ActivityIndicator } from 'react-native';
 import { Container, FilterContainer, FilterText, Wrapper } from './style';
 import { Button, Header, SearchInput, ProductCard, FilterModal } from '@components';
 import { FilterLayout } from '../../layout/index';
+import moment from 'moment';
+
+//state managment
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProducts } from '@store/products/productsSlice';
 import { addToCart } from '@store/cart/cartSlice';
 import { RootState } from '@store/store';
-import moment from 'moment';
+import { addToFavorites, removeFromFavorites } from '@store/fav/favoriteSlice'
 
 const Home = () => {
   
@@ -28,27 +32,55 @@ const Home = () => {
   }, [dispatch]);
 
   const products: Array<ProductType> = useSelector((state: RootState) => state.products.productData);
+  const favorites = useSelector((state: RootState) => state.fav.favorites);
 
   useEffect(() => {
     setDisplayProducts(products.slice(0, 12));
   }, [products]);
 
+  //favorite product feature
+  const isInFavorites = (product: ProductType): boolean => {
+    const isFavorite = favorites.some((favProduct) => {
+      return favProduct.id === product.id;
+    });
+    return isFavorite;
+  };
+  
+  const handleFavorite = (product: ProductType) => {
+    const isFavorite = isInFavorites(product);
+    if (isFavorite) {
+      dispatch(removeFromFavorites(product));
+    } else {
+      dispatch(addToFavorites(product));
+    }
+  };
+  
   const renderItem = (product: ProductType) => (
     <ProductCard
-      addFav={() => console.log(product)}
+      addFav={() => handleFavorite(product)}
       onPress={() => dispatch(addToCart(product))}
+      id={product.id}
       price={product.price}
       productImage={product.image}
       productName={product.name}
+      fav={isInFavorites(product)} 
     />
   );
 
   const handleLoadMore = () => {
     setShowActivityIndicator(true);
     setPage((prevPage) => prevPage + 1);
-    setDisplayProducts((prevProducts) => [...prevProducts, ...products.slice(page * 12, (page + 1) * 12)]);
+  
+    const newDisplayProducts = [
+      ...displayProducts,
+      ...products.slice(page * 12, (page + 1) * 12),
+    ];
+  
+    setDisplayProducts(newDisplayProducts);
+  
     setShowActivityIndicator(false);
   };
+  
 
   const applySortAndFilter = () => {
     let filteredAndSortedProducts = [...products];
