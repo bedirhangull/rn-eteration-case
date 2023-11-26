@@ -10,6 +10,7 @@ const InputContainer = styled.View<{theme: ITheme}>`
 
 const Input = styled.TextInput<{theme: ITheme}>`
     padding: 0px;
+    width: 100%;
     margin-left: 8px;
     font-weight: ${props => props.theme.fonts.bold};
     font-size: ${props => props.theme.fontSizes.l}
