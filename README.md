@@ -12,7 +12,7 @@ I set up a component structure to at least help me with the parameters while dev
 As a technology choice, I decided to use the following technologies.
 ![Logo](https://i.imgur.com/kfygFCM.png)
 
-## Environment Variables
+## Absolute Paths
 
 Some absolute paths I used in the project: 
 
