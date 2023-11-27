@@ -10,4 +10,4 @@ Before starting the project, I analyzed the requirements of the project in terms
 I set up a component structure to at least help me with the parameters while developing.
 ![Logo](https://i.imgur.com/L6Fd0Kz.png)
 As a technology choice, I decided to use the following technologies.
-![Logo](https://i.imgur.com/1icVMCs.png)
+![Logo](https://i.imgur.com/kfygFCM.png)
