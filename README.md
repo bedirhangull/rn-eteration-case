@@ -11,3 +11,18 @@ I set up a component structure to at least help me with the parameters while dev
 ![Logo](https://i.imgur.com/L6Fd0Kz.png)
 As a technology choice, I decided to use the following technologies.
 ![Logo](https://i.imgur.com/kfygFCM.png)
+
+## Environment Variables
+
+Some absolute paths I used in the project: 
+
+
+`@views for screens`
+
+`@components for components`
+
+`@options for options about project`
+
+`@layout for layout`
+
+`@store for state managment`
